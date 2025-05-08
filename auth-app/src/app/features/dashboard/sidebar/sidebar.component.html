@@ -1,0 +1,23 @@
+<div class="sidebar-header">
+  <h2>Auth App</h2>
+</div>
+
+<mat-nav-list>
+  <a mat-list-item routerLink="/dashboard" routerLinkActive="active">
+    <mat-icon>dashboard</mat-icon>
+    <span>Dashboard</span>
+  </a>
+  <a mat-list-item routerLink="/drag-drop" routerLinkActive="active">
+    <mat-icon>drag_indicator</mat-icon>
+    <span>Drag and Drop</span>
+  </a>
+  <a mat-list-item routerLink="/infinite-scroll" routerLinkActive="active">
+    <mat-icon>view_list</mat-icon>
+    <span>Infinite Scroll</span>
+  </a>
+  <mat-divider></mat-divider>
+  <a mat-list-item (click)="logout()">
+    <mat-icon>exit_to_app</mat-icon>
+    <span>Logout</span>
+  </a>
+</mat-nav-list>

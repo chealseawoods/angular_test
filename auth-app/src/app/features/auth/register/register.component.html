@@ -1,0 +1,49 @@
+<div class="auth-container">
+  <div class="auth-card">
+    <div class="auth-header">
+      Register
+    </div>
+    <div class="auth-content">
+      <form [formGroup]="registerForm" (ngSubmit)="onSubmit()" class="auth-form">
+        <mat-form-field appearance="outline">
+          <mat-label>First Name</mat-label>
+          <input matInput formControlName="firstName" required>
+          <mat-error *ngIf="f['firstName'].touched && f['firstName'].errors?.['required']">First name is required</mat-error>
+        </mat-form-field>
+
+        <mat-form-field appearance="outline">
+          <mat-label>Last Name</mat-label>
+          <input matInput formControlName="lastName" required>
+          <mat-error *ngIf="f['lastName'].touched && f['lastName'].errors?.['required']">Last name is required</mat-error>
+        </mat-form-field>
+
+        <mat-form-field appearance="outline">
+          <mat-label>Email</mat-label>
+          <input matInput formControlName="email" required type="email">
+          <mat-error *ngIf="f['email'].touched && f['email'].errors?.['required']">Email is required</mat-error>
+          <mat-error *ngIf="f['email'].touched && f['email'].errors?.['email']">Invalid email</mat-error>
+        </mat-form-field>
+
+        <mat-form-field appearance="outline">
+          <mat-label>Password</mat-label>
+          <input matInput formControlName="password" required type="password">
+          <mat-error *ngIf="f['password'].touched && f['password'].errors?.['required']">Password is required</mat-error>
+          <mat-error *ngIf="f['password'].touched && f['password'].errors?.['minlength']">Password must be at least 6 characters</mat-error>
+        </mat-form-field>
+
+        <div *ngIf="error" class="error-message">{{ error }}</div>
+
+        <div class="form-actions">
+          <button mat-raised-button color="primary" type="submit" [disabled]="loading || registerForm.invalid">
+            <mat-spinner *ngIf="loading" diameter="20" class="spinner-inline"></mat-spinner>
+            <span *ngIf="!loading">Register</span>
+          </button>
+        </div>
+      </form>
+
+      <div class="link-container">
+        Already have an account? <a routerLink="../login">Login</a>
+      </div>
+    </div>
+  </div>
+</div>

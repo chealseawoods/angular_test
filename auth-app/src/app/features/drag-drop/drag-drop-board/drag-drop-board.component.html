@@ -1,0 +1,110 @@
+<div class="drag-drop-container">
+  <!-- Top Section -->
+  <div class="section section-top">
+    <div class="section-header">
+      <h2>Available Team Members</h2>
+      <p>Drag team members to assign them to projects below</p>
+    </div>
+    
+    <div class="top-row" cdkDropList [cdkDropListData]="topRow" [cdkDropListConnectedTo]="['project1-list', 'project2-list', 'project3-list']" (cdkDropListDropped)="drop($event)" id="available-list">
+      <div class="profile-card" *ngFor="let card of topRow" cdkDrag>
+        <div class="profile-card-content">
+          <div class="avatar-container">
+            <img [src]="card.avatar" alt="{{card.name}}" class="avatar">
+          </div>
+          <div class="info">
+            <div class="name">{{card.name}}</div>
+            <div class="designation">{{card.designation}}</div>
+          </div>
+        </div>
+        <!-- Preview when dragging -->
+        <div class="custom-placeholder" *cdkDragPlaceholder></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Bottom Section -->
+  <div class="section section-bottom">
+    <div class="section-header">
+      <h2>Project Assignments</h2>
+      <p>Drag team members between projects</p>
+    </div>
+    
+    <div class="projects-container">
+      <div class="project-column">
+        <div class="project-header">
+          <h3>Project Alpha</h3>
+          <span class="project-tag">Frontend</span>
+        </div>
+        <div class="project-list" cdkDropList [cdkDropListData]="project1" 
+             [cdkDropListConnectedTo]="['available-list', 'project2-list', 'project3-list']" 
+             (cdkDropListDropped)="drop($event)" id="project1-list">
+          <div class="profile-card" *ngFor="let card of project1" cdkDrag>
+            <div class="profile-card-content">
+              <div class="avatar-container">
+                <img [src]="card.avatar" alt="{{card.name}}" class="avatar">
+              </div>
+              <div class="info">
+                <div class="name">{{card.name}}</div>
+                <div class="designation">{{card.designation}}</div>
+              </div>
+            </div>
+          </div>
+          <div class="empty-message" *ngIf="project1.length === 0">
+            Drop team members here
+          </div>
+        </div>
+      </div>
+
+      <div class="project-column">
+        <div class="project-header">
+          <h3>Project Beta</h3>
+          <span class="project-tag">Backend</span>
+        </div>
+        <div class="project-list" cdkDropList [cdkDropListData]="project2" 
+             [cdkDropListConnectedTo]="['available-list', 'project1-list', 'project3-list']" 
+             (cdkDropListDropped)="drop($event)" id="project2-list">
+          <div class="profile-card" *ngFor="let card of project2" cdkDrag>
+            <div class="profile-card-content">
+              <div class="avatar-container">
+                <img [src]="card.avatar" alt="{{card.name}}" class="avatar">
+              </div>
+              <div class="info">
+                <div class="name">{{card.name}}</div>
+                <div class="designation">{{card.designation}}</div>
+              </div>
+            </div>
+          </div>
+          <div class="empty-message" *ngIf="project2.length === 0">
+            Drop team members here
+          </div>
+        </div>
+      </div>
+
+      <div class="project-column">
+        <div class="project-header">
+          <h3>Project Gamma</h3>
+          <span class="project-tag">Design</span>
+        </div>
+        <div class="project-list" cdkDropList [cdkDropListData]="project3" 
+             [cdkDropListConnectedTo]="['available-list', 'project1-list', 'project2-list']" 
+             (cdkDropListDropped)="drop($event)" id="project3-list">
+          <div class="profile-card" *ngFor="let card of project3" cdkDrag>
+            <div class="profile-card-content">
+              <div class="avatar-container">
+                <img [src]="card.avatar" alt="{{card.name}}" class="avatar">
+              </div>
+              <div class="info">
+                <div class="name">{{card.name}}</div>
+                <div class="designation">{{card.designation}}</div>
+              </div>
+            </div>
+          </div>
+          <div class="empty-message" *ngIf="project3.length === 0">
+            Drop team members here
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

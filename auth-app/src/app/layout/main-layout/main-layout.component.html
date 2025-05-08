@@ -1,0 +1,56 @@
+<div class="layout-container">
+  <!-- Sidebar -->
+  <aside class="sidebar" [class.collapsed]="!sidebarExpanded" [class.expanded]="sidebarExpanded">
+    <!-- App Logo/Header -->
+    <div class="sidebar-header">
+      <div class="logo-container">
+        <mat-icon class="app-logo">shield</mat-icon>
+        <span class="app-title" *ngIf="sidebarExpanded">Auth App</span>
+      </div>
+      <button mat-icon-button class="toggle-btn" (click)="toggleSidebar()" aria-label="Toggle sidebar">
+        <mat-icon>{{sidebarExpanded ? 'chevron_left' : 'chevron_right'}}</mat-icon>
+      </button>
+    </div>
+
+    <!-- Navigation Links -->
+    <mat-nav-list>
+      <a mat-list-item routerLink="/dashboard" routerLinkActive="active" class="nav-item">
+        <mat-icon>dashboard</mat-icon>
+        <span *ngIf="sidebarExpanded">Dashboard</span>
+      </a>
+      <a mat-list-item routerLink="/drag-drop" routerLinkActive="active" class="nav-item">
+        <mat-icon>swap_vert</mat-icon>
+        <span *ngIf="sidebarExpanded">Drag & Drop</span>
+      </a>
+      <a mat-list-item routerLink="/infinite-scroll" routerLinkActive="active" class="nav-item">
+        <mat-icon>auto_awesome</mat-icon>
+        <span *ngIf="sidebarExpanded">Gallery</span>
+      </a>
+      <mat-divider></mat-divider>
+      <a mat-list-item (click)="logout()" class="nav-item logout-item">
+        <mat-icon>logout</mat-icon>
+        <span *ngIf="sidebarExpanded">Logout</span>
+      </a>
+    </mat-nav-list>
+  </aside>
+
+  <!-- Main Content -->
+  <div class="content" [class.sidebar-expanded]="sidebarExpanded" [class.sidebar-collapsed]="!sidebarExpanded">
+    <!-- Toolbar -->
+    <mat-toolbar color="primary" class="app-toolbar">
+      <button mat-icon-button class="menu-toggle-mobile" (click)="toggleSidebar()" aria-label="Toggle sidebar">
+        <mat-icon>menu</mat-icon>
+      </button>
+      <h1 class="toolbar-title">Welcome to Auth App</h1>
+      <span class="toolbar-spacer"></span>
+      <button mat-icon-button aria-label="User settings">
+        <mat-icon>account_circle</mat-icon>
+      </button>
+    </mat-toolbar>
+
+    <!-- Page Content -->
+    <div class="page-content">
+      <router-outlet></router-outlet>
+    </div>
+  </div>
+</div>

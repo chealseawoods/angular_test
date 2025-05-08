@@ -1,0 +1,29 @@
+<div class="gallery-container">
+  <header class="gallery-header">
+    <h1>Infinite Dog Gallery</h1>
+    <p>Scroll down to load more adorable images</p>
+  </header>
+  
+  <div class="gallery-grid">
+    <div class="gallery-item" *ngFor="let img of images; let i = index">
+      <div class="gallery-card" [ngClass]="{'featured': i % 5 === 0}">
+        <div class="image-container">
+          <img [src]="img" alt="Dog image" loading="lazy">
+          <div class="overlay">
+            <div class="overlay-content">
+              <h3>Dog #{{i + 1}}</h3>
+              <button class="view-btn" mat-raised-button color="primary">View Full</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  
+  <div class="loading-container" *ngIf="loading">
+    <div class="loading-spinner">
+      <mat-progress-spinner diameter="40" mode="indeterminate"></mat-progress-spinner>
+      <p>Fetching more goodness...</p>
+    </div>
+  </div>
+</div>
